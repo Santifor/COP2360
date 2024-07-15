@@ -1,0 +1,57 @@
+using System;
+
+public class Asset
+{
+    public string Name;
+    public virtual decimal Liability => 0;  // Can be changed in subclasses
+}
+
+public class Stock : Asset   // inherits from Asset
+{
+    public long SharesOwned;
+}
+
+public class House : Asset   // inherits from Asset
+{
+    public decimal Mortgage;
+    public sealed override decimal Liability => Mortgage;  // Overridden and can't be changed further
+}
+
+public class LuxuryHouse : House
+{
+    public decimal AdditionalCosts;
+    
+    // The base constructor is implicitly called here
+    public LuxuryHouse(string name, decimal mortgage, decimal additionalCosts)
+    {
+        Name = name;
+        Mortgage = mortgage;
+        AdditionalCosts = additionalCosts;
+    }
+
+    // We can add more functionality or members to this subclass
+    public decimal TotalLiability => Mortgage + AdditionalCosts;
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        // Creating instances of Stock and House
+        Stock msft = new Stock { Name = "MSFT", SharesOwned = 1000 };
+        Console.WriteLine(msft.Name);         // MSFT
+        Console.WriteLine(msft.SharesOwned);  // 1000
+
+        House mansion = new House { Name = "Mansion", Mortgage = 250000 };
+        Console.WriteLine(mansion.Name);      // Mansion
+        Console.WriteLine(mansion.Mortgage);  // 250000
+        Console.WriteLine(mansion.Liability); // 250000
+
+        // Creating an instance of LuxuryHouse
+        LuxuryHouse luxuryMansion = new LuxuryHouse("Luxury Mansion", 300000, 50000);
+        Console.WriteLine(luxuryMansion.Name);            // Luxury Mansion
+        Console.WriteLine(luxuryMansion.Mortgage);        // 300000
+        Console.WriteLine(luxuryMansion.AdditionalCosts); // 50000
+        Console.WriteLine(luxuryMansion.TotalLiability);  // 350000
+    }
+}
