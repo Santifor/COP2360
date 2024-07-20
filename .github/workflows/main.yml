@@ -25,17 +25,17 @@ namespace DivisionAndConversionExceptions
                 int result = Divide(number1, number2);
                 Console.WriteLine($"The result of dividing {number1} by {number2} is: {result}");
             }
-            catch (FormatException)
+            catch (FormatException ex)
             {
-                Console.WriteLine("Error: One or both inputs are not valid integers.");
+                Console.WriteLine($"Error: One or both inputs are not valid integers. Details: {ex.Message}");
             }
-            catch (DivideByZeroException)
+            catch (DivideByZeroException ex)
             {
-                Console.WriteLine("Error: Division by zero is not allowed.");
+                Console.WriteLine($"Error: Division by zero is not allowed. Details: {ex.Message}");
             }
-            catch (OverflowException)
+            catch (OverflowException ex)
             {
-                Console.WriteLine("Error: One or both numbers are too large.");
+                Console.WriteLine($"Error: One or both numbers are too large. Details: {ex.Message}");
             }
             catch (Exception ex)
             {
@@ -48,4 +48,4 @@ namespace DivisionAndConversionExceptions
             return dividend / divisor;
         }
     }
-}  
+}
