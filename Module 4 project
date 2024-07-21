@@ -8,7 +8,7 @@ namespace DivisionAndConversionExceptions
         {
             Console.WriteLine("Enter the first number:");
             string input1 = Console.ReadLine();
-            
+
             Console.WriteLine("Enter the second number:");
             string input2 = Console.ReadLine();
 
@@ -51,98 +51,4 @@ namespace DivisionAndConversionExceptions
 }
 
 
-using System;
-using System.IO;
-
-namespace DivisionAndConversionExceptions
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Enter the first number:");
-            string input1 = Console.ReadLine();
-            
-            Console.WriteLine("Enter the second number:");
-            string input2 = Console.ReadLine();
-
-            PerformDivision(input1, input2);
-        }
-
-        static void PerformDivision(string num1, string num2)
-        {
-            try
-            {
-                int number1 = Convert.ToInt32(num1);
-                int number2 = Convert.ToInt32(num2);
-
-                int result = Divide(number1, number2);
-                Console.WriteLine($"The result of dividing {number1} by {number2} is: {result}");
-            }
-            catch (FormatException)
-            {
-                LogError("FormatException: One or both inputs are not valid integers.");
-                Console.WriteLine("Error: One or both inputs are not valid integers.");
-            }
-            catch (DivideByZeroException)
-            {
-                LogError("DivideByZeroException: Division by zero is not allowed.");
-                Console.WriteLine("Error: Division by zero is not allowed.");
-            }
-            catch (OverflowException)
-            {
-                LogError("OverflowException: One or both numbers are too large.");
-                Console.WriteLine("Error: One or both numbers are too large.");
-            }
-            catch (Exception ex)
-            {
-                LogError($"Exception: An unexpected error occurred: {ex.Message}");
-                Console.WriteLine($"An unexpected error occurred: {ex.Message}");
-            }
-        }
-
-        static int Divide(int dividend, int divisor)
-        {
-            return dividend / divisor;
-        }
-
-        static void LogError(string message)
-        {
-            File.AppendAllText("error_log.txt", $"{DateTime.Now}: {message}{Environment.NewLine}");
-        }
-    }
-}
-
-using System;
-
-namespace DivisionAndConversionExceptions
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Enter the first number:");
-            string input1 = Console.ReadLine();
-            
-            Console.WriteLine("Enter the second number:");
-            string input2 = Console.ReadLine();
-
-            PerformDivision(input1, input2);
-        }
-
-        static void PerformDivision(string num1, string num2)
-        {
-            // Remove try-catch block for testing
-            int number1 = Convert.ToInt32(num1);
-            int number2 = Convert.ToInt32(num2);
-
-            int result = Divide(number1, number2);
-            Console.WriteLine($"The result of dividing {number1} by {number2} is: {result}");
-        }
-
-        static int Divide(int dividend, int divisor)
-        {
-            return dividend / divisor;
-        }
-    }
-}
+    
